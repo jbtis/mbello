@@ -1,0 +1,31 @@
+<!-- Inherit from base html -->
+{% extends "base.html" %}
+
+<!-- Load static tag to load images, will look inside static/img of the project -->
+{% load static %}
+
+{% block page_content %}
+<h2>Projects</h2>
+<div class="row">
+    <!-- Django Engine For Loop Note: Can use this because defined in the views and passed as context variable-->
+    {% for project in projects %}
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <!-- Notation for static images {% static x.image %}  -->
+                <img class="card-img-top" src="{% static project.image1 %}">
+                <div class="card-body">
+
+                    <!-- Notation to access object attributes {{ x.y }}  -->
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description | slice:":200" }}...</p>
+                    <!-- Notation for urls  -->
+                    <a href="{% url 'project_detail' project.pk %}"
+                       class="btn btn-outline-primary">
+                        Read More
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

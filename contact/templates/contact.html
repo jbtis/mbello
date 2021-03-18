@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+  <!-- Custom JS -->
+
+
+  <h2>Contact</h2>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+      <!-- Contact list -->
+      {% for contact in contacts %}
+
+        <button class="btn btn-outline-primary copy-btn" copied-text={{contact.item}}>{{ contact.item }}</button>
+
+        <br> <br>
+
+        <!--
+        <button class="list-group-item list-group-item-action list-group-item-primary copy-btn" copied-text={{contact.item}}>{{ contact.item }}</button>
+        -->
+
+      {% endfor %}
+
+      <a href="https://www.linkedin.com/in/marianobello/" class="btn btn-outline-primary">LinkedIn Profile</a>
+
+        <br> <br>
+
+
+    </div>
+
+      <div class="col-md-10">
+
+          <img src="{% static 'contact/img/arch.png' %}" class="img-fluid rounded" alt="...">
+
+      </div>
+  </div>
+
+    <br>
+
+ <!-- https://stackoverflow.com/questions/30211605/javascript-html-collection-showing-as-0-length -->
+  <script src="{% static 'contact/js/button.js' %}"></script>
+
+{% endblock %}

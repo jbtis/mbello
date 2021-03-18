@@ -1,0 +1,43 @@
+<!-- Inherit from base html -->
+{% extends "base.html" %}
+
+<!-- Load static tag to load images, will look inside static/img of the project -->
+{% load static %}
+
+{% block page_content %}
+<h2>Projects in progress</h2>
+<p>Projects I'm currently working on this semester.</p>
+<hr>
+<div class="row">
+    <!-- Django Engine For Loop Note: Can use this because defined in the views and passed as context variable-->
+    {% for project in projects_in_progress %}
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <!-- Notation for static images {% static x.image %}  -->
+                <img class="card-img-top" src="{% static project.image1 %}">
+                <div class="card-body">
+
+                    <!-- Notation to access object attributes {{ x.y }}  -->
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description | slice:":200" }}...</p>
+
+                    <!-- Progress Bar -->
+                    <p>Progress:</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-succsess progress-bar-animated"
+                             role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: {{project.progress}}%"></div>
+                    </div>
+
+                    <br>
+
+                    <!-- Notation for urls  -->
+                    <a href="{% url 'in_progress_detail' project.pk %}"
+                       class="btn btn-outline-primary">
+                        Read More
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

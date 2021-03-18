@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+<h2>{{ project.title }}</h2>
+<hr>
+<div class="row">
+    <div class="col-md-4">
+        <!-- Each project  progress is hardcoded to have 1 image -->
+        <figure class="figure">
+          <img src="{% static project.image1 %}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">{{ project.image1_caption }}</figcaption>
+        </figure>
+    </div>
+    <br>
+
+    <div class="col-md-8">
+
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                About the Project
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <p>{{ project.description }}</p>
+              </div>
+            </div>
+          </div>
+    </div>
+        <br>
+        <p>Progress:</p>
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{project.progress}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+</ul>
+
+
+        <br>
+        <div class="alert alert-success" role="alert">
+        <h6>Technology used:</h6>
+            <small><p>{{ project.technology }}</p></small>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
